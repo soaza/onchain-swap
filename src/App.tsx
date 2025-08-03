@@ -2,6 +2,7 @@ import "./App.css";
 import { SwapFrom } from "@/swap/components/swap-from";
 import { UsdInput } from "@/swap/components/usd-input";
 import { SwapTo } from "@/swap/components/swap-to";
+import { SwapContextProvider } from "@/swap/context/swap-context";
 
 const SwapIcon = () => {
   return (
@@ -14,10 +15,12 @@ function App() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-background">
       <div className="w-full max-w-md p-6 space-y-6 rounded-xl bg-card shadow-lg">
-        <UsdInput />
-        <SwapFrom />
-        <SwapIcon />
-        <SwapTo />
+        <SwapContextProvider>
+          <UsdInput />
+          <SwapFrom />
+          <SwapIcon />
+          <SwapTo />
+        </SwapContextProvider>
       </div>
     </div>
   );

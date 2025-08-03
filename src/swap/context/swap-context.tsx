@@ -1,8 +1,9 @@
 import { createContext, useContext, type ReactNode } from "react";
 import { TOKENS, type TTokenSymbols } from "@/swap/constants/tokens";
 import { useState } from "react";
+import { useSwap } from "@/hooks/useSwap";
 
-interface SwapState {
+export interface SwapState {
   fromToken: TTokenSymbols;
   toToken: TTokenSymbols;
   fromAmount: string;
@@ -48,6 +49,13 @@ export const SwapContextProvider = ({ children }: SwapContextProviderProps) => {
     fromAmount: "",
     toAmount: "",
     usdAmount: "",
+  });
+
+  useSwap({
+    usdAmount: state.usdAmount,
+    fromToken: state.fromToken,
+    toToken: state.toToken,
+    setState,
   });
 
   return (
