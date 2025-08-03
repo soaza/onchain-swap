@@ -15,7 +15,6 @@ export const SwapFrom = () => {
         <Input
           className="flex-1"
           placeholder={fetching ? "Loading..." : "0.00"}
-          type="number"
           disabled
           value={fetching ? "Loading..." : state.fromAmount}
         />
