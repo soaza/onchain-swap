@@ -14,7 +14,7 @@ export interface SwapState {
 
 interface SwapContextType {
   state: SwapState;
-  setState: (state: SwapState) => void;
+  setState: React.Dispatch<React.SetStateAction<SwapState>>;
 }
 
 const SwapContext = createContext<SwapContextType>({

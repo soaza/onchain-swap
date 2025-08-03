@@ -13,21 +13,18 @@ interface Props {
   excludedTokens?: TTokenSymbols[];
 }
 export const TokenSelector = ({ token, setToken, excludedTokens }: Props) => {
-  const tokenOptions = TOKENS.filter(
-    (token) => !excludedTokens?.includes(token.symbol)
-  );
-
   return (
     <Select
-      defaultValue={token}
+      value={token}
       onValueChange={(value) => setToken(value as TTokenSymbols)}
     >
       <SelectTrigger className="w-24">
         <SelectValue placeholder="Select a token" />
       </SelectTrigger>
       <SelectContent>
-        {tokenOptions.map((token) => (
+        {TOKENS.map((token) => (
           <SelectItem
+            className={excludedTokens?.includes(token.symbol) ? "hidden" : ""}
             key={`${token.symbol}-${token.chainId}`}
             value={token.symbol}
           >
