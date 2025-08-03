@@ -4,7 +4,7 @@ import { TokenSelector } from "@/swap/components/token-selector";
 import { useSwapContext } from "@/swap/context/swap-context";
 
 export const SwapTo = () => {
-  const { state } = useSwapContext();
+  const { state, setState } = useSwapContext();
   return (
     <div className="space-y-2">
       <Label>You receive</Label>
@@ -16,7 +16,11 @@ export const SwapTo = () => {
           disabled
           value={state.toAmount}
         />
-        <TokenSelector />
+        <TokenSelector
+          token={state.toToken}
+          setToken={(token) => setState({ ...state, toToken: token })}
+          excludedTokens={[state.fromToken]}
+        />
       </div>
     </div>
   );

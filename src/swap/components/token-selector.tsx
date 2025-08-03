@@ -5,16 +5,28 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { TOKENS } from "@/swap/constants/tokens";
+import { TOKENS, type TTokenSymbols } from "@/swap/constants/tokens";
 
-export const TokenSelector = () => {
+interface Props {
+  token: TTokenSymbols;
+  setToken: (token: TTokenSymbols) => void;
+  excludedTokens?: TTokenSymbols[];
+}
+export const TokenSelector = ({ token, setToken, excludedTokens }: Props) => {
+  const tokenOptions = TOKENS.filter(
+    (token) => !excludedTokens?.includes(token.symbol)
+  );
+
   return (
-    <Select defaultValue={TOKENS[0].symbol}>
+    <Select
+      defaultValue={token}
+      onValueChange={(value) => setToken(value as TTokenSymbols)}
+    >
       <SelectTrigger className="w-24">
         <SelectValue placeholder="Select a token" />
       </SelectTrigger>
       <SelectContent>
-        {TOKENS.map((token) => (
+        {tokenOptions.map((token) => (
           <SelectItem
             key={`${token.symbol}-${token.chainId}`}
             value={token.symbol}
