@@ -9,6 +9,7 @@ export interface SwapState {
   fromAmount: string;
   toAmount: string;
   usdAmount: string;
+  fetching: boolean;
 }
 
 interface SwapContextType {
@@ -23,6 +24,7 @@ const SwapContext = createContext<SwapContextType>({
     fromAmount: "",
     toAmount: "",
     usdAmount: "",
+    fetching: false,
   },
   setState: () => {},
 });
@@ -49,6 +51,7 @@ export const SwapContextProvider = ({ children }: SwapContextProviderProps) => {
     fromAmount: "",
     toAmount: "",
     usdAmount: "",
+    fetching: false,
   });
 
   useSwap({

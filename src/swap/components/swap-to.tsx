@@ -5,16 +5,18 @@ import { useSwapContext } from "@/swap/context/swap-context";
 
 export const SwapTo = () => {
   const { state, setState } = useSwapContext();
+
+  const fetching = state.fetching;
   return (
     <div className="space-y-2">
       <Label>You receive</Label>
       <div className="flex gap-2">
         <Input
           className="flex-1"
-          placeholder="0.00"
+          placeholder={fetching ? "Loading..." : "0.00"}
           type="number"
           disabled
-          value={state.toAmount}
+          value={fetching ? "Loading..." : state.toAmount}
         />
         <TokenSelector
           token={state.toToken}
