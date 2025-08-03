@@ -7,6 +7,7 @@ import {
   useSwapContext,
 } from "@/swap/context/swap-context";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { Button } from "@/components/ui/button";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -19,7 +20,7 @@ const queryClient = new QueryClient({
 const SwapIcon = () => {
   const { setState } = useSwapContext();
   return (
-    <div
+    <Button
       onClick={() =>
         setState((state) => ({
           ...state,
@@ -27,10 +28,10 @@ const SwapIcon = () => {
           fromToken: state.toToken,
         }))
       }
-      className="mx-auto size-10 flex items-center justify-center rounded-full bg-muted cursor-pointer hover:bg-muted/80 hover:scale-105 transition-all duration-300"
+      className="mx-auto size-10 flex items-center justify-center rounded-full cursor-pointer hover:scale-105 transition-all duration-300 w-fit active:translate-y-1"
     >
       ↓↑
-    </div>
+    </Button>
   );
 };
 function App() {

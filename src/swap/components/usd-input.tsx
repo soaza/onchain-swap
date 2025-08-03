@@ -5,15 +5,14 @@ export const UsdInput = () => {
   const { state, setState } = useSwapContext();
   return (
     <div className="space-y-2">
-      <div className="flex gap-2">
-        <Input
-          className="flex-1"
-          placeholder="Amount in USD"
-          type="number"
-          value={state.usdAmount}
-          onChange={(e) => setState({ ...state, usdAmount: e.target.value })}
-        />
-      </div>
+      <Input
+        className="flex-1"
+        placeholder="0.00"
+        type="number"
+        value={state.usdAmount}
+        onChange={(e) => setState({ ...state, usdAmount: e.target.value })}
+      />
+      <div className="text-sm text-muted-foreground text-right">USD</div>
     </div>
   );
 };
